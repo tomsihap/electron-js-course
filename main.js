@@ -23,9 +23,22 @@ function createWindow() {
     // Charger le fichier index.html à afficher dans la fenêtre
     //win.loadFile('index.html')
     win.loadFile('index.html')
+    win.webContents.openDevTools()
 
     winGoogle.loadURL('https://google.com')
     winGoogle.setOpacity(0.4)
 }
 
 app.whenReady().then(createWindow)
+
+app.on('quit', () => {
+    console.log("L'application a été quittée !")
+})
+
+app.on('browser-window-blur', () => {
+    console.log("L'application est en arrière plan")
+})
+
+app.on('browser-window-focus', () => {
+    console.log("L'application est en premier plan")
+})
