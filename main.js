@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 
 function createWindow() {
     // Créer la fenetre du navigateur
@@ -41,4 +41,8 @@ app.on('browser-window-blur', () => {
 
 app.on('browser-window-focus', () => {
     console.log("L'application est en premier plan")
+})
+
+ipcMain.on('open-error-dialog', () => {
+    dialog.showErrorBox('Message d\'erreur', 'Vous avez lancé une alerte !')
 })
